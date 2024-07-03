@@ -1,0 +1,4 @@
+# frontend/.husky/pre-commit
+
+cd MyApp
+npx lint-staged
