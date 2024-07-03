@@ -1,35 +1,38 @@
-import React, {useEffect, useState} from 'react';
-import {DevSettings, SafeAreaView, Text} from 'react-native';
+import React from 'react';
+import {SafeAreaView} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-// Components
-import {MyButton} from '@components/Button/Button';
+import PaymentScreen from './src/screens/PaymentScreen';
+import DetailsScreen from './src/screens/DetailsScreen';
+import TabNavigator from './src/navigators/TabNavigator';
+
+const Stack = createNativeStackNavigator(); // Define the Stack variable
 
 const App = () => {
-  const [toggleStorybook, setToggleStorybook] = useState<boolean>(false);
-
-  // Adds a custom menu item to the developer settings to toggle Storybook
-  useEffect(() => {
-    DevSettings.addMenuItem('Toggle Storybook', () => {
-      setToggleStorybook(prev => !prev);
-    });
-  }, []);
-
-  if (toggleStorybook) {
-    const Storybook = require('./.ondevice').default;
-
-    return <Storybook />;
-  }
-
   return (
-    <SafeAreaView>
-      <Text>My App</Text>
-      <MyButton
-        text="Hello world"
-        textColor="red"
-        onPress={() => console.log('Clicked!')}
-      />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: true}}>
+        <Stack.Screen
+          name="Tab"
+          component={TabNavigator}
+          options={{animation: 'slide_from_bottom'}}
+        />
+        <Stack.Screen
+          name="Details"
+          component={DetailsScreen}
+          options={{animation: 'slide_from_bottom'}}
+        />
+        <Stack.Screen
+          name="Payment"
+          component={PaymentScreen}
+          options={{animation: 'slide_from_bottom'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
+
+// const styles = StyleSheet.create({});
 
 export default App;
