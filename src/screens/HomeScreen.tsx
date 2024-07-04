@@ -42,6 +42,8 @@ const getCoffeeList = (category: string, data: any) => {
 const HomeScreen = ({navigation}: any) => {
   const coffeeList = useStore((state: any) => state.CoffeeList);
   const beanList = useStore((state: any) => state.BeanList);
+  const addToCart = useStore((state: any) => state.addToCart);
+  const calculateCartPrice = useStore((state: any) => state.calculateCartPrice);
 
   const [categories, setCategories] = useState(
     getCategoriesFromData(coffeeList),
@@ -75,6 +77,29 @@ const HomeScreen = ({navigation}: any) => {
     setCategoryIndex({index: 0, category: categories[0]});
     setSearchText('');
     setSortedCoffee(coffeeList);
+  };
+
+  const coffeeCardAddToCart = ({
+    id,
+    index,
+    name,
+    roasted,
+    imageLink,
+    specialIngredient,
+    type,
+    prices,
+  }: any) => {
+    addToCart({
+      id,
+      index,
+      name,
+      roasted,
+      imagelink_square: imageLink,
+      special_ingredient: specialIngredient,
+      type,
+      prices,
+    });
+    calculateCartPrice();
   };
 
   return (
@@ -187,7 +212,7 @@ const HomeScreen = ({navigation}: any) => {
                 id={item.id}
                 index={item.index}
                 type={item.type}
-                rosted={item.rosted}
+                roasted={item.roasted}
                 imageLink={item.imagelink_square}
                 name={item.name}
                 specialIngredient={item.special_ingredient}
@@ -221,13 +246,13 @@ const HomeScreen = ({navigation}: any) => {
                 id={item.id}
                 index={item.index}
                 type={item.type}
-                rosted={item.rosted}
+                roasted={item.roasted}
                 imageLink={item.imagelink_square}
                 name={item.name}
                 specialIngredient={item.special_ingredient}
                 averageRating={item.average_rating}
                 price={item.prices[0].price}
-                buttonPressHandler={() => {}}
+                buttonPressHandler={coffeeCardAddToCart}
               />
             </TouchableOpacity>
           )}

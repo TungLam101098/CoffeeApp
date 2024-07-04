@@ -26,20 +26,20 @@ interface CoffeeCardProps {
   id: string;
   index: number;
   type: string;
-  rosted: string;
+  roasted: string;
   imageLink: ImageProps;
   name: string;
   specialIngredient: string;
   averageRating: number;
   price: string;
-  buttonPressHandler: () => void;
+  buttonPressHandler: any;
 }
 
 const CoffeeCard = ({
   id,
   index,
   type,
-  rosted,
+  roasted,
   imageLink,
   name,
   specialIngredient,
@@ -72,7 +72,19 @@ const CoffeeCard = ({
         <Text style={styles.cardPriceCurrency}>
           $<Text style={styles.cardPrice}>{price}</Text>
         </Text>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity
+          onPress={() => {
+            buttonPressHandler({
+              id,
+              index,
+              type,
+              roasted,
+              imagelink_square: imageLink,
+              name,
+              specialIngredient,
+              prices: [{price, quantity: 1}],
+            });
+          }}>
           <BGIcon
             color={COLORS.primaryWhiteHex}
             name="add"
