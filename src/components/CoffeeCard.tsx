@@ -31,7 +31,7 @@ interface CoffeeCardProps {
   name: string;
   specialIngredient: string;
   averageRating: number;
-  price: number;
+  price: string;
   buttonPressHandler: () => void;
 }
 
