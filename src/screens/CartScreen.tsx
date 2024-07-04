@@ -56,7 +56,15 @@ const CartScreen = ({navigation, route}: any) => {
             ) : (
               <View style={styles.listItemContainer}>
                 {CartList.map((data: any) => (
-                  <TouchableOpacity key={data.id} onPress={() => {}}>
+                  <TouchableOpacity
+                    key={data.id}
+                    onPress={() => {
+                      navigation.push('Details', {
+                        index: data.index,
+                        id: data.id,
+                        type: data.type,
+                      });
+                    }}>
                     <CartItem
                       id={data.id}
                       name={data.name}
