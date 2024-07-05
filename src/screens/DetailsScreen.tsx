@@ -74,7 +74,7 @@ const DetailsScreen = ({navigation, route}: any) => {
           imageLink={itemOfIndex.imagelink_portrait}
           type={itemOfIndex.type}
           id={itemOfIndex.id}
-          favorite={itemOfIndex.favourite}
+          favorite={itemOfIndex.favorite}
           name={itemOfIndex.name}
           specialIngredient={itemOfIndex.special_ingredient}
           ingredient={itemOfIndex.ingredients}

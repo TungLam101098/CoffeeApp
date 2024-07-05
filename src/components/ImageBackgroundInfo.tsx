@@ -8,7 +8,13 @@ import {
   Text,
 } from 'react-native';
 import GradientBGIcon from './GradientBGIcon';
-import {BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../theme/theme';
+import {
+  BORDERRADIUS,
+  COLORS,
+  FONTFAMILY,
+  FONTSIZE,
+  SPACING,
+} from '../theme/theme';
 import CustomIcon from './CustomIcon';
 
 interface ImageBackgroundInfoProps {
@@ -40,7 +46,8 @@ const ImageBackgroundInfo = ({
   ratingCount,
   roasted,
   backHandler,
-  toggleFavorite}: ImageBackgroundInfoProps) => {
+  toggleFavorite,
+}: ImageBackgroundInfoProps) => {
   return (
     <View>
       <ImageBackground source={imageLink} style={styles.itemBackgroundImage}>
@@ -106,7 +113,7 @@ const ImageBackgroundInfo = ({
                   </Text>
                 </View>
                 <View style={styles.properFirst}>
-                <CustomIcon
+                  <CustomIcon
                     name={type === 'Bean' ? 'location' : 'drop'}
                     size={FONTSIZE.size_16}
                     color={COLORS.primaryOrangeHex}
